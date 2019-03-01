@@ -30,7 +30,9 @@ class SmurfForm extends Component {
     .post('http://localhost:3333/smurfs', {name: this.state.name, age: this.state.age, height: this.state.height})
     .then(res => {
       console.log(res)
-
+      this.setState({
+        smurfs: res.data
+      })
       this.props.history.push('/')
     })
     .catch(err => {
