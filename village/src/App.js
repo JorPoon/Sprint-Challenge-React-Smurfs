@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import {BrowserRouter as Router, Route, withRouter, NavLink} from 'react-router-dom';
 import './App.css';
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
@@ -10,6 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       smurfs: [],
+      activeSmurf: null
     };
   }
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
@@ -32,11 +33,16 @@ class App extends Component {
     console.log(this.state.smurfs)
     return (
       <div className="App">
-        <SmurfForm />
-        <Smurfs smurfs={this.state.smurfs} />
+      <nav>
+      <NavLink exact to="/smurf-form">Add New Smurfs!</NavLink>
+      </nav>
+      <Route exact path="/smurf-form" render={props => <SmurfForm {...props}/>} />
+      <Route  exact path="/" render={props =>  <Smurfs smurfs={this.state.smurfs} {...props} />}/>
       </div>
     );
   }
 }
 
-export default App;
+const AppWithRouter = withRouter(App)
+
+export default AppWithRouter;

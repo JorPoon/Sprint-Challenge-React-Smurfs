@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {BrowserRouter as Router, Route, withRouter, NavLink} from 'react-router-dom';
 
 
 class SmurfForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      activeSmurf: null,
       name: '',
       age: '',
       height: ''
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.activeSmurf && prevProps.activeSmurf !== this.props.activeSmurf) {
+      this.setState({
+        activeSmurf: this.props.activeSmurf,
+      })
+    }
   }
 
   addSmurf = event => {
@@ -19,6 +29,7 @@ class SmurfForm extends Component {
     .post('http://localhost:3333/smurfs', {name: this.state.name, age: this.state.age, height: this.state.height})
     .then(res => {
       console.log(res)
+      this.props.history.push('/')
     })
     .catch(err => {
       console.log(err);
@@ -43,6 +54,7 @@ class SmurfForm extends Component {
     console.log()
     return (
       <div className="SmurfForm">
+      <NavLink to="/">Smurf List</NavLink>
         <form onSubmit={this.addSmurf}>
           <input
             onChange={this.handleInputChange}

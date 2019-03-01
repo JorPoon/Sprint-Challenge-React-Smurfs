@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {BrowserRouter as Router, Route, withRouter, NavLink} from 'react-router-dom';
 
 import Smurf from './Smurf';
 
