@@ -7,20 +7,21 @@ class SmurfForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeSmurf: null,
       name: '',
       age: '',
       height: ''
     };
   }
 
-  componentDidUpdate(prevProps) {
-    if(this.props.activeSmurf && prevProps.activeSmurf !== this.props.activeSmurf) {
-      this.setState({
-        activeSmurf: this.props.activeSmurf,
-      })
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if(prevState !== this.state) {
+  //     this.setState({
+  //       name: this.props.name,
+  //       age: this.props.age,
+  //       height: this.props.height
+  //     })
+  //   }
+  // }
 
   addSmurf = event => {
     event.preventDefault();
@@ -29,16 +30,17 @@ class SmurfForm extends Component {
     .post('http://localhost:3333/smurfs', {name: this.state.name, age: this.state.age, height: this.state.height})
     .then(res => {
       console.log(res)
+
       this.props.history.push('/')
     })
     .catch(err => {
       console.log(err);
     })
-    this.setState({
-      name: '',
-      age: '',
-      height: ''
-    });
+    // this.setState({
+    //   name: '',
+    //   age: '',
+    //   height: ''
+    // });
   }
 
   handleInputChange = e => {
