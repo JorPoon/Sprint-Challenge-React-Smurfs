@@ -20,9 +20,9 @@ class SmurfForm extends Component {
     .then(res => {
       console.log(res)
       this.setState({
-        name: '',
-        age: '',
-        height: ''
+        name: res.name,
+        age: res.age,
+        height: res.height
       });
     })
     .catch(err => {
@@ -36,10 +36,11 @@ class SmurfForm extends Component {
     if (e.target.name === 'age') {
       value = parseInt(value, 10)
     }
-    this.setState({ [e.target.name]: value });
+    this.setState({[e.target.name]: value });
   };
 
   render() {
+    console.log()
     return (
       <div className="SmurfForm">
         <form onSubmit={this.addSmurf}>
