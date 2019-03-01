@@ -11,4 +11,7 @@
     CRUD stands for Create Read Update 
 
 1.  Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+    The HTTP request methods are used to interface with APIs/Servers. They are mainly GET to retrieve data from servers, POST to add or create new information to add to the data, PUT to update data already posted and Delete to terminate existing data in the server .
+
 1.  Mention three tools we can use to make AJAX requests
