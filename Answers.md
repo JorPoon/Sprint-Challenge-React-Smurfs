@@ -15,3 +15,5 @@
     The HTTP request methods are used to interface with APIs/Servers. They are mainly GET to retrieve data from servers, POST to add or create new information to add to the data, PUT to update data already posted and Delete to terminate existing data in the server .
 
 1.  Mention three tools we can use to make AJAX requests
+
+    Some of the different tools we could use to make AJAX requests are AXIOS, JQUERY or FETCH.
