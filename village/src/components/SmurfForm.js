@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import {BrowserRouter as Router, Route, withRouter, NavLink} from 'react-router-dom';
+
 
 class SmurfForm extends Component {
   constructor(props) {
@@ -10,24 +13,52 @@ class SmurfForm extends Component {
     };
   }
 
+  // componentDidUpdate(prevProps, prevState) {
+  //   if(prevState !== this.state) {
+  //     this.setState({
+  //       name: this.props.name,
+  //       age: this.props.age,
+  //       height: this.props.height
+  //     })
+  //   }
+  // }
+
   addSmurf = event => {
     event.preventDefault();
     // add code to create the smurf using the api
-
-    this.setState({
-      name: '',
-      age: '',
-      height: ''
-    });
+    axios
+    .post('http://localhost:3333/smurfs', {name: this.state.name, age: this.state.age, height: this.state.height})
+    .then(res => {
+      console.log(res)
+      this.setState({
+        smurfs: res.data
+      })
+      this.props.history.push('/')
+    })
+    .catch(err => {
+      console.log(err);
+    })
+    // this.setState({
+    //   name: '',
+    //   age: '',
+    //   height: ''
+    // });
   }
 
   handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    e.persist();
+    let value = e.target.value;
+    if (e.target.name === 'age') {
+      value = parseInt(value, 10)
+    }
+    this.setState({[e.target.name]: value });
   };
 
   render() {
+    console.log()
     return (
       <div className="SmurfForm">
+      <NavLink to="/">Smurf List</NavLink>
         <form onSubmit={this.addSmurf}>
           <input
             onChange={this.handleInputChange}

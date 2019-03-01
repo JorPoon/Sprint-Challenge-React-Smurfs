@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {BrowserRouter as Router, Route, withRouter, NavLink} from 'react-router-dom';
 
 import Smurf from './Smurf';
 
@@ -16,6 +17,7 @@ class Smurfs extends Component {
                 age={smurf.age}
                 height={smurf.height}
                 key={smurf.id}
+                // deleteSmurf={smurf.deleteSmurf}
               />
             );
           })}
